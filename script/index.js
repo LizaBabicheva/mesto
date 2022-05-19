@@ -55,7 +55,6 @@ popupCloseButton.addEventListener('click', closePopupAdd);
 
 
 //Like
-
 const elementCards = document.querySelectorAll('.element');
 
 elementCards.forEach(elementCard => {
