@@ -81,8 +81,8 @@
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
-    <div class="popup__container">
+  <div class="popup popup_type_edit">
+    <div class="popup__container popup__container_type_edit">
       <form class="popup__form" name="profile-change-form">
         <h3 class="popup__form-heading">Редактировать профиль</h3>
         <fieldset class="popup__form-fieldset">
@@ -94,6 +94,33 @@
       <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
     </div>
   </div>
-  <script src="./script/index.js"></script>  
+
+
+  <div class="popup popup_type_add">
+    <div class="popup__container popup__container_type_add">
+      <form class="popup__form" name="element-change-form">
+        <h3 class="popup__form-heading">Новое место</h3>
+        <fieldset class="popup__form-fieldset">
+          <input class="popup__input popup__input_type_placename" type="text" placeholder="Название" name="element-name" required>
+          <input class="popup__input popup__input_type_image" type="text" placeholder="Ссылка на картинку" name="element-image" required>
+        </fieldset>
+        <button class="popup__save-button" type="submit" aria-label="Создать">Создать</button>
+      </form>
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+
+  <!---<div class="popup popup_type_photo">
+    <div class="popup__container popup__container_type_photo">
+      <figure class="popup-photo__figure">
+        <img class="popup-photo__image">
+        <figcaption class="popup-photo__caption"></figcaption>
+      </figure>
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>--->
+
+
+  <script src="./script/index.js"></script>
 </body>
 </html>
