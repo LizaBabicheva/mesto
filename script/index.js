@@ -52,13 +52,52 @@ popupCloseButton.addEventListener('click', closePopup);
 // popupCloseButton.addEventListener('click', closePopupAdd);
 
 
+//Template
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]; 
 
-//Like
-const elementCards = document.querySelectorAll('.element');
+const elementTemplate = document.querySelector('.elements-template').content;
+const elementList = document.querySelector('.elements');
+initialCards.forEach(card => {
+  const newElement = elementTemplate.querySelector('.element').cloneNode(true);
+  newElement.querySelector('.element__name').textContent = card.name;
+  newElement.querySelector('.element__photo').src = card.link;
 
-elementCards.forEach(elementCard => {
-  const likeButton = elementCard.querySelector('.element__like');
+  const likeButton = newElement.querySelector('.element__like');
   likeButton.addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
   });
+
+  elementList.append(newElement);
 });
+
+//Like
+// const elementCards = document.querySelectorAll('.element');
+
+// elementCards.forEach(elementCard => {
+
+// });
