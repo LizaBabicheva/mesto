@@ -38,8 +38,8 @@
       <form class="popup__form" name="profile-change-form">
         <h3 class="popup__form-heading">Редактировать профиль</h3>
         <fieldset class="popup__form-fieldset">
-          <input class="popup__input" type="text" placeholder="Имя" id="input-profile-name" name="profile-name" required>
-          <input class="popup__input" type="text" placeholder="О себе" id="input-profile-about" name="profile-about" required>
+          <input class="popup__input popup__input_type_profilename" type="text" placeholder="Имя" id="input-profile-name" name="profile-name" required>
+          <input class="popup__input popup__input_type_profileabout" type="text" placeholder="О себе" id="input-profile-about" name="profile-about" required>
         </fieldset>
         <button class="popup__save-button" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
@@ -53,7 +53,7 @@
         <h3 class="popup__form-heading">Новое место</h3>
         <fieldset class="popup__form-fieldset">
           <input class="popup__input popup__input_type_placename" type="text" placeholder="Название" name="element-name" required>
-          <input class="popup__input popup__input_type_image" type="text" placeholder="Ссылка на картинку" name="element-image" required>
+          <input class="popup__input popup__input_type_placephoto" type="text" placeholder="Ссылка на картинку" name="element-image" required>
         </fieldset>
         <button class="popup__save-button" type="submit" aria-label="Создать">Создать</button>
       </form>
@@ -64,19 +64,19 @@
   <div class="popup popup_type_photo">
     <div class="popup__photo-container">
       <figure class="popup__photo-figure">
-        <img class="popup__photo-image">
+        <img class="popup__photo-image" src="#" alt="">
         <figcaption class="popup__photo-caption"></figcaption>
       </figure>
       <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
     </div>
   </div>
 
-  <template class="elements-template">
+  <template class="element-template">
     <li class="element">
-      <img class="element__photo">
+      <img class="element__photo" src="#" alt="">
       <button class="element__delete" type="button" aria-label="Удалить"></button>
       <div class="element__description">
-        <h3 class="element__name"></h3>
+        <h2 class="element__name"></h2>
         <button class="element__like" type="button" aria-label="Нравится"></button>
       </div>
     </li>

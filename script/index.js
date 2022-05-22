@@ -31,8 +31,8 @@ const popupElement = document.querySelector('.popup_type_photo');
 const formElement = document.querySelector('.popup__container_type_edit');
 const formAdd = document.querySelector('.popup__container_type_add');
 
-const nameInput = formElement.querySelector('#input-profile-name');
-const jobInput = formElement.querySelector('#input-profile-about');
+const nameInput = formElement.querySelector('.popup__input_type_profilename');
+const jobInput = formElement.querySelector('.popup__input_type_profileabout');
 const nameLabel = document.querySelector('.profile__name');
 const jobLabel = document.querySelector('.profile__about');
 
@@ -44,7 +44,7 @@ const popupPlacePhoto = document.querySelector('.popup__photo-image');
 const popupPlaceName = document.querySelector('.popup__photo-caption');
 
 const placeNameInput = formAdd.querySelector('.popup__input_type_placename');
-const placePhotoInput = formAdd.querySelector('.popup__input_type_image');
+const placePhotoInput = formAdd.querySelector('.popup__input_type_placephoto');
 
 //Profile popup
 function openPopupEdit() {
@@ -75,10 +75,6 @@ function addCard (evt) {
 
 popupAdd.addEventListener('submit', addCard);
 
-// function closePopup() {
-//   popupEdit.classList.remove('popup_opened');
-// }
-
 function closePopup(evt) {
   let closeButton = evt.target;
   let popup = closeButton.closest('.popup');
@@ -100,11 +96,8 @@ function handleFormSubmit (evt) {
 formElement.addEventListener('submit', handleFormSubmit);
 
 
-//popupCloseButton.addEventListener('click', closePopup);
-
-
 //Template
-const elementTemplate = document.querySelector('.elements-template').content;
+const elementTemplate = document.querySelector('.element-template').content;
 const elementList = document.querySelector('.elements');
 
 function addCardLikeHandlers(card) {
