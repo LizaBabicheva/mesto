@@ -70,29 +70,37 @@ function addCard (evt) {
   const link = placePhotoInput.value;
   const newElement = createCardElement(name, link);
   elementList.prepend(newElement);
+  closePopup(evt);
 }
 
 popupAdd.addEventListener('submit', addCard);
 
-function closePopup() {
-  popupEdit.classList.remove('popup_opened');
+// function closePopup() {
+//   popupEdit.classList.remove('popup_opened');
+// }
+
+function closePopup(evt) {
+  let closeButton = evt.target;
+  let popup = closeButton.closest('.popup');
+  popup.classList.remove('popup_opened');
 }
+
+document.querySelectorAll('.popup__close-button').forEach((button) => {
+  button.addEventListener('click', closePopup);
+})
+
 
 function handleFormSubmit (evt) {
   evt.preventDefault();
   nameLabel.textContent = nameInput.value;
   jobLabel.textContent = jobInput.value;
-  closePopup();
+  closePopup(evt);
 }
 
 formElement.addEventListener('submit', handleFormSubmit);
 
 
-popupCloseButton.addEventListener('click', closePopup);
-
-
-//Нов
-// const formAdd = document.querySelector('.popup__container_type_add');
+//popupCloseButton.addEventListener('click', closePopup);
 
 
 //Template
@@ -147,3 +155,4 @@ function createCardElement(name, link) {
 
   return newElement;
 }
+
