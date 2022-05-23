@@ -25,11 +25,8 @@ const initialCards = [
   }
 ];
 
-//const popupEdit = document.querySelector('.popup_type_edit');
 const profilePopup = document.querySelector('.popup_type_edit');
-//const popupAdd = document.querySelector('.popup_type_add');
 const cardPopup = document.querySelector('.popup_type_add');
-//const popupElement = document.querySelector('.popup_type_photo');
 const imagePopup = document.querySelector('.popup_type_photo');
 
 const editForm = document.querySelector('.popup__container_type_edit');
@@ -56,9 +53,16 @@ function createCardElement(name, link) {
   const newElement = elementTemplate.querySelector('.element').cloneNode(true);
   newElement.querySelector('.element__name').textContent = name;
   newElement.querySelector('.element__photo').src = link;
-  addCardLikeHandlers(newElement);
-  addCardPhotoHandlers(newElement);
-  addCardDeleteHandlers(newElement);
+
+  const likeButton = newElement.querySelector('.element__like');
+  likeButton.addEventListener('click', () => toggleLike(likeButton));
+
+  const elementPhoto = newElement.querySelector('.element__photo');
+  elementPhoto.addEventListener('click', openImagePopup);
+
+  const elementDeleteButton = newElement.querySelector('.element__delete');
+  elementDeleteButton.addEventListener('click', deleteCard);
+
   return newElement;
 }
 
@@ -67,26 +71,13 @@ initialCards.forEach(card => {
   elementList.append(newElement);
 });
 
-function addCardLikeHandlers(card) {
-  const likeButton = card.querySelector('.element__like');
-  likeButton.addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like_active');
-  });
-}
-
-function addCardPhotoHandlers(card) {
-  const elementPhoto = card.querySelector('.element__photo');
-  elementPhoto.addEventListener('click', openImagePopup);
-}
+function toggleLike(likeButton) {
+  likeButton.classList.toggle('element__like_active');
+};
 
 function deleteCard(clickEvent) {
   const element = clickEvent.currentTarget.closest('.element');
   element.remove();
-}
-
-function addCardDeleteHandlers(card) {
-  const elementDeleteButton = card.querySelector('.element__delete');
-  elementDeleteButton.addEventListener('click', deleteCard);
 }
 
 function openPopup(popup) {
