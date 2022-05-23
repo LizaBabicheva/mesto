@@ -32,11 +32,11 @@ const cardPopup = document.querySelector('.popup_type_add');
 //const popupElement = document.querySelector('.popup_type_photo');
 const imagePopup = document.querySelector('.popup_type_photo');
 
-const formElement = document.querySelector('.popup__container_type_edit');
+const editForm = document.querySelector('.popup__container_type_edit');
 const formAdd = document.querySelector('.popup__container_type_add');
 
-const nameInput = formElement.querySelector('.popup__input_type_profilename');
-const jobInput = formElement.querySelector('.popup__input_type_profileabout');
+const nameInput = editForm.querySelector('.popup__input_type_profilename');
+const jobInput = editForm.querySelector('.popup__input_type_profileabout');
 const nameLabel = document.querySelector('.profile__name');
 const jobLabel = document.querySelector('.profile__about');
 
@@ -99,14 +99,14 @@ function openProfilePopup() {
   jobInput.value = jobLabel.textContent;
 }
 
-function handleProfileEdit (evt) {
+function handleProfileEdit(evt) {
   evt.preventDefault();
   nameLabel.textContent = nameInput.value;
   jobLabel.textContent = jobInput.value;
-  closePopup(evt);
+  closePopup(profilePopup);
 }
 
-function addCard (evt) {
+function addCard(evt) {
   evt.preventDefault();
   const name = placeNameInput.value;
   const link = placePhotoInput.value;
@@ -127,17 +127,12 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-function handleCloseButtonClick(evt) {
-  let closeButton = evt.target;
-  let popup = closeButton.closest('.popup');
-  closePopup(popup);
-}
-
-document.querySelectorAll('.popup__close-button').forEach((button) => {
-  button.addEventListener('click', handleCloseButtonClick);
-})
+document.querySelectorAll('.popup__close-button').forEach(button => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
 
 profileEditButton.addEventListener('click', openProfilePopup);
 elementAddButton.addEventListener('click', () => openPopup(cardPopup));
 cardPopup.addEventListener('submit', addCard);
-formElement.addEventListener('submit', handleProfileEdit);
+editForm.addEventListener('submit', handleProfileEdit);
