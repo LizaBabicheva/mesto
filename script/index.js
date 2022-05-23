@@ -23,7 +23,8 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-]; 
+];
+
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupElement = document.querySelector('.popup_type_photo');
@@ -85,8 +86,6 @@ function addCardDeleteHandlers(card) {
   elementDeleteButton.addEventListener('click', deleteCard);
 }
 
-
-
 function openPopupEdit() {
   popupEdit.classList.add('popup_opened');
   nameInput.value = nameLabel.textContent;
@@ -99,8 +98,6 @@ function handleFormSubmit (evt) {
   jobLabel.textContent = jobInput.value;
   closePopup(evt);
 }
-
-
 
 function openPopupAdd() {
   popupAdd.classList.add('popup_opened');
@@ -122,21 +119,17 @@ function openPopupElement(clickEvent) {
   popupPlaceName.textContent = sourceElement.querySelector('.element__name').textContent;
 }
 
-
-
 function closePopup(evt) {
   let closeButton = evt.target;
   let popup = closeButton.closest('.popup');
   popup.classList.remove('popup_opened');
 }
 
+document.querySelectorAll('.popup__close-button').forEach((button) => {
+  button.addEventListener('click', closePopup);
+})
 
 profileEditButton.addEventListener('click', openPopupEdit);
 elementAddButton.addEventListener('click', openPopupAdd);
 popupAdd.addEventListener('submit', addCard);
 formElement.addEventListener('submit', handleFormSubmit);
-
-
-document.querySelectorAll('.popup__close-button').forEach((button) => {
-  button.addEventListener('click', closePopup);
-})
