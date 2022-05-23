@@ -109,6 +109,8 @@ function addCard (evt) {
   const link = placePhotoInput.value;
   const newElement = createCardElement(name, link);
   elementList.prepend(newElement);
+  //evt.target.reset();
+  placeNameInput.value = '';
   closePopup(evt);
 }
 
