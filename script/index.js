@@ -130,14 +130,26 @@ editForm.addEventListener('submit', handleProfileEdit);
 
 //закрыть popup esc
 function closePopupEscButton(evt) {
- if (evt.keyCode === 27) { 
-  closePopup(document.querySelector('.popup_opened'));
- };
+  if (evt.keyCode === 27) { 
+    closePopup(document.querySelector('.popup_opened'));
+  };
 };
 
-// cardPopup.addEventListener('keydown', closePopupEscButton);
-
-window.addEventListener('keydown', closePopupEscButton);
-
+document.addEventListener('keydown', closePopupEscButton);
 
 //закрыть popup кликом
+
+function closePopupClick(evt){
+  if (evt.target === evt.currentTarget) {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+// profilePopup.addEventListener('click', closePopupClick);
+// cardPopup.addEventListener('click', closePopupClick);
+// imagePopup.addEventListener('click', closePopupClick);
+
+
+document.querySelectorAll('.popup').forEach(popup => {
+  popup.addEventListener('click', closePopupClick);
+})
