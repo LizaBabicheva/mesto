@@ -35,11 +35,11 @@
 
   <div class="popup popup_type_edit">
     <div class="popup__container popup__container_type_edit">
-      <form class="popup__form" name="profile-change-form">
+      <form class="popup__form" name="profile-change-form" novalidate>
         <h3 class="popup__form-heading">Редактировать профиль</h3>
         <fieldset class="popup__form-fieldset">
-          <input class="popup__input popup__input_type_profilename" type="text" placeholder="Имя" id="input-profile-name" name="profile-name" required>
-          <input class="popup__input popup__input_type_profileabout" type="text" placeholder="О себе" id="input-profile-about" name="profile-about" required>
+          <input class="popup__input popup__input_type_profilename" type="text" placeholder="Имя" id="input-profile-name" name="profile-name" minlength="2" maxlength="40" required>
+          <input class="popup__input popup__input_type_profileabout" type="text" placeholder="О себе" id="input-profile-about" name="profile-about" minlength="2" maxlength="200" required>
         </fieldset>
         <button class="popup__save-button" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
@@ -48,12 +48,14 @@
   </div>
 
   <div class="popup popup_type_add">
-    <div class="popup__container popup__container_type_add">
+    <div class="popup__container popup__container_type_add" novalidate>
       <form class="popup__form" name="element-add-form">
         <h3 class="popup__form-heading">Новое место</h3>
         <fieldset class="popup__form-fieldset">
-          <input class="popup__input popup__input_type_placename" type="text" placeholder="Название" name="element-name" required>
-          <input class="popup__input popup__input_type_placephoto" type="text" placeholder="Ссылка на картинку" name="element-image" required>
+          <input class="popup__input popup__input_type_placename" type="text" placeholder="Название" name="element-name" minlength="2" maxlength="30" required>
+          <span class="popup__error popup__error_visible"></span>
+          <input class="popup__input popup__input_type_placephoto" type="url" placeholder="Ссылка на картинку" name="element-image" required>
+          <span class="popup__error popup__error_visible"></span>
         </fieldset>
         <button class="popup__save-button" type="submit" aria-label="Создать">Создать</button>
       </form>
@@ -83,5 +85,6 @@
   </template>
 
   <script src="./script/index.js"></script>
+  <script src="./script/validate.js"></script>
 </body>
 </html>
