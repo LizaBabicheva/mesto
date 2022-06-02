@@ -127,3 +127,17 @@ profileEditButton.addEventListener('click', openProfilePopup);
 elementAddButton.addEventListener('click', () => openPopup(cardPopup));
 cardPopup.addEventListener('submit', addCard);
 editForm.addEventListener('submit', handleProfileEdit);
+
+//закрыть popup esc
+function closePopupEscButton(evt) {
+ if (evt.keyCode === 27) { 
+  closePopup(document.querySelector('.popup_opened'));
+ };
+};
+
+// cardPopup.addEventListener('keydown', closePopupEscButton);
+
+window.addEventListener('keydown', closePopupEscButton);
+
+
+//закрыть popup кликом
