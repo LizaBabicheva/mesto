@@ -27,9 +27,11 @@ function isValid(formElement, inputElement, options) {
 
 function setEventListener(formElement, options) {
     const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
+    const buttonElement = formElement.closest('.popup__form').querySelector(options.submitButtonSelector);
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
             isValid(formElement, inputElement, options);
+            toggleButtonState(inputList, buttonElement, options);
         });
     });
 }
@@ -44,10 +46,34 @@ function enebleValidation(options) {
     })
 }
 
+document.querySelectorAll('.popup').forEach(popup => popup.addEventListener('popupOpen', () => {
+    debugger;
+}))
+
 enebleValidation({
-    formSelector: '.popup__input-lable',
+    formSelector: '.popup__input-label',
     inputSelector: '.popup__input',
 
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible',
+
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_disabled',
 });
+
+
+function hasInputValid(inputList) {
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+    })
+}
+
+function toggleButtonState(inputList, buttonElement, options) {
+    if (hasInputValid(inputList)) {
+        buttonElement.classList.add(options.inactiveButtonClass);
+        buttonElement.setAttribute('disabled', '');
+    } else {
+        buttonElement.classList.remove(options.inactiveButtonClass);
+        buttonElement.removeAttribute('disabled');
+    }
+}

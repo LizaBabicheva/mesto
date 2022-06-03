@@ -49,6 +49,7 @@ const placePhotoInput = formAdd.querySelector('.popup__input_type_placephoto');
 const elementTemplate = document.querySelector('.element-template').content;
 const elementList = document.querySelector('.elements');
 
+
 function createCardElement(name, link) {
   const newElement = elementTemplate.querySelector('.element').cloneNode(true);
   newElement.querySelector('.element__name').textContent = name;
