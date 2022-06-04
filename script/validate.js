@@ -28,6 +28,7 @@ function isValid(formElement, inputElement, options) {
 function setEventListener(formElement, options) {
     const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
     const buttonElement = formElement.closest('.popup__form').querySelector(options.submitButtonSelector);
+    toggleButtonState(inputList, buttonElement, options);
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
             isValid(formElement, inputElement, options);
@@ -45,10 +46,6 @@ function enebleValidation(options) {
         setEventListener(formElement, options);
     })
 }
-
-document.querySelectorAll('.popup').forEach(popup => popup.addEventListener('popupOpen', () => {
-    debugger;
-}))
 
 enebleValidation({
     formSelector: '.popup__input-label',

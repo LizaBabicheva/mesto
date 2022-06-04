@@ -49,3 +49,5 @@
 
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
+
+@import url(../blocks/popup/__input-label/popup__input-label.css);
