@@ -1,13 +1,12 @@
 function showInputError(formElement, inputElement, errorMessage, options) {
-  const errorElement = formElement.querySelector('.popup__error');
+  const errorElement = inputElement.closest(options.formLabelSelector).querySelector(options.inputErrorSelector);
   inputElement.classList.add(options.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(options.errorClass);
-
 };
 
 function hideInputError(formElement, inputElement, options) {
-  const errorElement = formElement.querySelector('.popup__error');
+  const errorElement = inputElement.closest(options.formLabelSelector).querySelector(options.inputErrorSelector);
   inputElement.classList.remove(options.inputErrorClass);
   errorElement.classList.remove(options.errorClass);
   errorElement.textContent = '';
@@ -30,16 +29,14 @@ function hasInputInvalid(inputList) {
 function toggleButtonState(inputList, buttonElement, options) {
   if (hasInputInvalid(inputList)) {
     buttonElement.classList.add(options.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', '');
   } else {
     buttonElement.classList.remove(options.inactiveButtonClass);
-    buttonElement.removeAttribute('disabled');
   }
 }
 
 function setEventListener(formElement, options) {
   const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
-  const buttonElement = formElement.closest('.popup__form').querySelector(options.submitButtonSelector);
+  const buttonElement = formElement.closest(options.formSelector).querySelector(options.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, options);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
@@ -55,15 +52,17 @@ function enebleValidation(options) {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    setEventListener(formElement, options);
+  setEventListener(formElement, options);
   })
 }
 
 enebleValidation({
-  formSelector: '.popup__input-label',
+  formSelector: '.popup__form',
+  formLabelSelector: '.popup__input-label',
   inputSelector: '.popup__input',
+  inputErrorSelector:'.popup__error',
+  submitButtonSelector: '.popup__save-button',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
-  submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled',
 });
