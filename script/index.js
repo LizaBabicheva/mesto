@@ -123,7 +123,7 @@ function closePopup(popup) {
 }
 
 function closePopupEscButton(evt) {
-  if (evt.keyCode === 27) { 
+  if (evt.key === 'Escape') { 
     closePopup(document.querySelector('.popup_opened'));
   }
 }
