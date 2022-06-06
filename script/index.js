@@ -29,11 +29,13 @@ const profilePopup = document.querySelector('.popup_type_edit');
 const cardPopup = document.querySelector('.popup_type_add');
 const imagePopup = document.querySelector('.popup_type_photo');
 
-const formEdit = document.querySelector('.popup__container_type_edit');
-const formAdd = document.querySelector('.popup__container_type_add');
+const containerEdit = document.querySelector('.popup__container_type_edit');
+const containerAdd = document.querySelector('.popup__container_type_add');
 
-const nameInput = formEdit.querySelector('.popup__input_type_profilename');
-const jobInput = formEdit.querySelector('.popup__input_type_profileabout');
+const formAdd = containerAdd.querySelector('.popup__form');
+
+const nameInput = containerEdit.querySelector('.popup__input_type_profilename');
+const jobInput = containerEdit.querySelector('.popup__input_type_profileabout');
 const nameLabel = document.querySelector('.profile__name');
 const jobLabel = document.querySelector('.profile__about');
 
@@ -43,8 +45,8 @@ const elementAddButton = document.querySelector('.profile__add-button');
 const popupPlacePhoto = document.querySelector('.popup__photo-image');
 const popupPlaceName = document.querySelector('.popup__photo-caption');
 
-const placeNameInput = formAdd.querySelector('.popup__input_type_placename');
-const placePhotoInput = formAdd.querySelector('.popup__input_type_placephoto');
+const placeNameInput = containerAdd.querySelector('.popup__input_type_placename');
+const placePhotoInput = containerAdd.querySelector('.popup__input_type_placephoto');
 
 const elementTemplate = document.querySelector('.element-template').content;
 const elementList = document.querySelector('.elements');
@@ -105,7 +107,7 @@ function addCard(evt) {
   const newElement = createCardElement(name, link);
   elementList.prepend(newElement);
   closePopup(cardPopup);
-  evt.target.reset();
+  formAdd.reset();
 }
 
 function openImagePopup(clickEvent) {
@@ -144,5 +146,5 @@ document.querySelectorAll('.popup').forEach(popup => {
 profileEditButton.addEventListener('click', openProfilePopup);
 elementAddButton.addEventListener('click', () => openPopup(cardPopup));
 cardPopup.addEventListener('submit', addCard);
-formEdit.addEventListener('submit', handleProfileEdit);
+containerEdit.addEventListener('submit', handleProfileEdit);
 document.addEventListener('keydown', closePopupEscButton);
