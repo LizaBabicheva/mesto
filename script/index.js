@@ -49,16 +49,16 @@ const placePhotoInput = formAdd.querySelector('.popup__input_type_placephoto');
 const elementTemplate = document.querySelector('.element-template').content;
 const elementList = document.querySelector('.elements');
 
-
 function createCardElement(name, link) {
   const newElement = elementTemplate.querySelector('.element').cloneNode(true);
+  const elementPhoto = newElement.querySelector('.element__photo');
   newElement.querySelector('.element__name').textContent = name;
-  newElement.querySelector('.element__photo').src = link;
+  elementPhoto.src = link;
+  elementPhoto.setAttribute('alt', name);
 
   const likeButton = newElement.querySelector('.element__like');
   likeButton.addEventListener('click', () => toggleLike(likeButton));
 
-  const elementPhoto = newElement.querySelector('.element__photo');
   elementPhoto.addEventListener('click', openImagePopup);
 
   const elementDeleteButton = newElement.querySelector('.element__delete');
@@ -112,6 +112,7 @@ function openImagePopup(clickEvent) {
   const sourceElement = clickEvent.currentTarget.closest('.element');
   popupPlacePhoto.src = sourceElement.querySelector('.element__photo').src;
   popupPlaceName.textContent = sourceElement.querySelector('.element__name').textContent;
+  popupPlacePhoto.alt = popupPlaceName.textContent;
   openPopup(imagePopup);
 }
 
