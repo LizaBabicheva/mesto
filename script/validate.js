@@ -57,7 +57,7 @@ function setEventListener(formElement, options) {
   });
 }
 
-function enebleValidation(options) {
+function enableValidation(options) {
   const formList = Array.from(document.querySelectorAll(options.formSelector));
   formList.forEach((formElement) => {
     setEventListener(formElement, options);

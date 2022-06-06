@@ -175,4 +175,4 @@ elementAddButton.addEventListener('click', () => openPopup(cardPopup));
 formAdd.addEventListener('submit', addCard);
 formEdit.addEventListener('submit', handleProfileEdit);
 
-enebleValidation(validationOptions);
+enableValidation(validationOptions);
