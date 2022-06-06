@@ -20,10 +20,21 @@ function isValid(formElement, inputElement, options) {
   }
 }
 
+function isFormHasInvalidInput(formElement, options) {
+  const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
+  return hasInputInvalid(inputList);
+}
+
 function hasInputInvalid(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
+}
+
+function toggleFormButton(formElement, options) {
+  const buttonElement = formElement.closest(options.formSelector).querySelector(options.submitButtonSelector);
+  const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
+  toggleButtonState(inputList, buttonElement, options);
 }
 
 function toggleButtonState(inputList, buttonElement, options) {
@@ -36,7 +47,7 @@ function toggleButtonState(inputList, buttonElement, options) {
 
 function setEventListener(formElement, options) {
   const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
-  const buttonElement = formElement.closest(options.formSelector).querySelector(options.submitButtonSelector);
+  const buttonElement = formElement.querySelector(options.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, options);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
@@ -49,20 +60,6 @@ function setEventListener(formElement, options) {
 function enebleValidation(options) {
   const formList = Array.from(document.querySelectorAll(options.formSelector));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-  setEventListener(formElement, options);
+    setEventListener(formElement, options);
   })
 }
-
-enebleValidation({
-  formSelector: '.popup__form',
-  formLabelSelector: '.popup__input-label',
-  inputSelector: '.popup__input',
-  inputErrorSelector:'.popup__error',
-  submitButtonSelector: '.popup__save-button',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-  inactiveButtonClass: 'popup__save-button_disabled',
-});
