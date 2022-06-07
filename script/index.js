@@ -112,9 +112,6 @@ function openProfilePopup() {
 function handleProfileEdit(evt) {
   evt.preventDefault();
 
-  if (isFormHasInvalidInput(formEdit, validationOptions)) {
-    return;
-  }
   nameLabel.textContent = nameInput.value;
   jobLabel.textContent = jobInput.value;
   closePopup(profilePopup);
@@ -122,21 +119,13 @@ function handleProfileEdit(evt) {
 
 function addCard(evt) {
   evt.preventDefault();
-
-  if (isFormHasInvalidInput(formAdd, validationOptions)) {
-    return;
-  }
   
   const name = placeNameInput.value;
   const link = placePhotoInput.value;
-  
   const newElement = createCardElement(name, link);
   elementList.prepend(newElement);
-  //toggleFormButton(formAdd, validationOptions);
   closePopup(cardPopup);
   formAdd.reset();
-  cardPopupSaveButton.classList.add('popup__save-button_disabled');
-  
 }
 
 function openImagePopup(name, link) {
@@ -174,7 +163,10 @@ document.querySelectorAll('.popup').forEach(popup => {
 });
 
 profileEditButton.addEventListener('click', openProfilePopup);
-elementAddButton.addEventListener('click', () => openPopup(cardPopup));
+elementAddButton.addEventListener('click', () => {
+  openPopup(cardPopup);
+  toggleFormButton(cardPopup, validationOptions);
+});
 formAdd.addEventListener('submit', addCard);
 formEdit.addEventListener('submit', handleProfileEdit);
 

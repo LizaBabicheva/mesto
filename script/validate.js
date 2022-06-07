@@ -20,11 +20,6 @@ function isValid(formElement, inputElement, options) {
   }
 }
 
-function isFormHasInvalidInput(formElement, options) {
-  const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
-  return hasInputInvalid(inputList);
-}
-
 function hasInputInvalid(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
@@ -35,15 +30,16 @@ function toggleFormButton(formElement, options) {
   const buttonElement = formElement.querySelector(options.submitButtonSelector);
   const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
   toggleButtonState(inputList, buttonElement, options);
-  //
   inputList.forEach((inputElement) => hideInputError(formElement, inputElement, options));
 }
 
 function toggleButtonState(inputList, buttonElement, options) {
   if (hasInputInvalid(inputList)) {
     buttonElement.classList.add(options.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', '');
   } else {
     buttonElement.classList.remove(options.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   }
 }
 
