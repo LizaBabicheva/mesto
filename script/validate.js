@@ -20,10 +20,10 @@ function isValid(formElement, inputElement, options) {
   }
 }
 
-function isFormHasInvalidInput(formElement, options) {
-  const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
-  return hasInputInvalid(inputList);
-}
+// function isFormHasInvalidInput(formElement, options) {
+//   const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
+//   return hasInputInvalid(inputList);
+// }
 
 function hasInputInvalid(inputList) {
   return inputList.some((inputElement) => {
@@ -32,7 +32,9 @@ function hasInputInvalid(inputList) {
 }
 
 function toggleFormButton(formElement, options) {
-  const buttonElement = formElement.closest(options.formSelector).querySelector(options.submitButtonSelector);
+  //const buttonElement = formElement.closest(options.formSelector).querySelector(options.submitButtonSelector);
+  const buttonElement = formElement.querySelector(options.submitButtonSelector);
+  debugger;
   const inputList = Array.from(formElement.querySelectorAll(options.inputSelector));
   toggleButtonState(inputList, buttonElement, options);
 }
