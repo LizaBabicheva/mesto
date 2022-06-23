@@ -1,3 +1,5 @@
+import {Card} from './Card.js';
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -62,40 +64,46 @@ const popupPlaceName = document.querySelector('.popup__photo-caption');
 const placeNameInput = containerAdd.querySelector('.popup__input_type_placename');
 const placePhotoInput = containerAdd.querySelector('.popup__input_type_placephoto');
 
-const elementTemplate = document.querySelector('.element-template').content;
+//const elementTemplate = document.querySelector('.element-template').content;
 const elementList = document.querySelector('.elements');
 
-function createCardElement(name, link) {
-  const newElement = elementTemplate.querySelector('.element').cloneNode(true);
-  const elementPhoto = newElement.querySelector('.element__photo');
-  newElement.querySelector('.element__name').textContent = name;
-  elementPhoto.src = link;
-  elementPhoto.setAttribute('alt', name);
-
-  const likeButton = newElement.querySelector('.element__like');
-  likeButton.addEventListener('click', () => toggleLike(likeButton));
-
-  elementPhoto.addEventListener('click', () => openImagePopup(name, link));
-
-  const elementDeleteButton = newElement.querySelector('.element__delete');
-  elementDeleteButton.addEventListener('click', deleteCard);
-
-  return newElement;
-}
-
-initialCards.forEach(card => {
-  const newElement = createCardElement(card.name, card.link);
-  elementList.append(newElement);
+initialCards.forEach(item => {
+  const card = new Card(item, '.element-template_type_default', openImagePopup);
+  const cardElement = card.createCardElement();
+  elementList.append(cardElement);
 });
 
-function toggleLike(likeButton) {
-  likeButton.classList.toggle('element__like_active');
-};
+// function createCardElement(name, link) {
+//   const newElement = elementTemplate.querySelector('.element').cloneNode(true);
+//   const elementPhoto = newElement.querySelector('.element__photo');
+//   newElement.querySelector('.element__name').textContent = name;
+//   elementPhoto.src = link;
+//   elementPhoto.setAttribute('alt', name);
 
-function deleteCard(clickEvent) {
-  const element = clickEvent.currentTarget.closest('.element');
-  element.remove();
-}
+//   const likeButton = newElement.querySelector('.element__like');
+//   likeButton.addEventListener('click', () => toggleLike(likeButton));
+
+//   elementPhoto.addEventListener('click', () => openImagePopup(name, link));
+
+//   const elementDeleteButton = newElement.querySelector('.element__delete');
+//   elementDeleteButton.addEventListener('click', deleteCard);
+
+//   return newElement;
+// }
+
+// initialCards.forEach(card => {
+//   const newElement = createCardElement(card.name, card.link);
+//   elementList.append(newElement);
+// });
+
+// function toggleLike(likeButton) {
+//   likeButton.classList.toggle('element__like_active');
+// };
+
+// function deleteCard(clickEvent) {
+//   const element = clickEvent.currentTarget.closest('.element');
+//   element.remove();
+// }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -122,7 +130,10 @@ function addCard(evt) {
   
   const name = placeNameInput.value;
   const link = placePhotoInput.value;
-  const newElement = createCardElement(name, link);
+  //
+  const newElement = new Card(data, cardSelector, openImagePopup);
+  //const newElement = createCardElement(name, link);
+  //
   elementList.prepend(newElement);
   closePopup(cardPopup);
   formAdd.reset();
