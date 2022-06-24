@@ -1,4 +1,5 @@
 import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 
 const initialCards = [
   {
@@ -28,7 +29,7 @@ const initialCards = [
 ];
 
 const validationOptions = {
-  formSelector: '.popup__form',
+  // formSelector: '.popup__form',
   formLabelSelector: '.popup__input-label',
   inputSelector: '.popup__input',
   inputErrorSelector:'.popup__error',
@@ -73,6 +74,11 @@ initialCards.forEach(item => {
   elementList.append(cardElement);
 });
 
+document.querySelectorAll('.popup__form').forEach(formElement => {
+  new FormValidator(validationOptions, formElement).enableValidation();
+});
+
+
 // function createCardElement(name, link) {
 //   const newElement = elementTemplate.querySelector('.element').cloneNode(true);
 //   const elementPhoto = newElement.querySelector('.element__photo');
@@ -114,7 +120,7 @@ function openProfilePopup() {
   nameInput.value = nameLabel.textContent;
   jobInput.value = jobLabel.textContent;
   openPopup(profilePopup);
-  toggleFormButton(formEdit, validationOptions);
+  //toggleFormButton(formEdit, validationOptions);
 }
 
 function handleProfileEdit(evt) {
@@ -130,9 +136,9 @@ function addCard(evt) {
   
   const name = placeNameInput.value;
   const link = placePhotoInput.value;
-  //
-  const newElement = new Card(data, cardSelector, openImagePopup);
-  //const newElement = createCardElement(name, link);
+  
+  //Нужно исправить
+  // const newElement = createCardElement(name, link);
   //
   elementList.prepend(newElement);
   closePopup(cardPopup);
@@ -176,9 +182,8 @@ document.querySelectorAll('.popup').forEach(popup => {
 profileEditButton.addEventListener('click', openProfilePopup);
 elementAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
-  toggleFormButton(cardPopup, validationOptions);
+  //toggleFormButton(cardPopup, validationOptions);
 });
 formAdd.addEventListener('submit', addCard);
 formEdit.addEventListener('submit', handleProfileEdit);
 
-enableValidation(validationOptions);
