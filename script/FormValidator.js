@@ -43,11 +43,6 @@ class FormValidator {
     });
   }
   
-   toggleFormButton() {
-    this._toggleButtonState();
-    this._inputList.forEach((inputElement) => this._hideInputError(inputElement));
-  }
-  
   _toggleButtonState() {
     if (this._hasInputInvalid(this._inputList)) {
       this._buttonElement.classList.add(this._inactiveButtonClass);
@@ -68,12 +63,17 @@ class FormValidator {
     });
   }
   
+  toggleFormButton() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => this._hideInputError(inputElement));
+  }
+
   enableValidation() {
     this._setEventListener();
   }
 
   isSameForm(form) {
-      return this._formElement == form;
+    return this._formElement == form;
   }
 }
 
