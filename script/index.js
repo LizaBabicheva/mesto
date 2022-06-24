@@ -29,7 +29,6 @@ const initialCards = [
 ];
 
 const validationOptions = {
-  // formSelector: '.popup__form',
   formLabelSelector: '.popup__input-label',
   inputSelector: '.popup__input',
   inputErrorSelector:'.popup__error',
@@ -70,8 +69,7 @@ const elementList = document.querySelector('.elements');
 const validators = [];
 
 initialCards.forEach(item => {
-  const card = new Card(item, '.element-template_type_default', openImagePopup);
-  const cardElement = card.createCardElement();
+  const cardElement = createCardElement(item);
   elementList.append(cardElement);
 });
 
@@ -80,6 +78,11 @@ document.querySelectorAll('.popup__form').forEach(formElement => {
   validators.push(validator);
   validator.enableValidation();
 });
+
+function createCardElement(cardData) {
+  const card = new Card(cardData, '.element-template_type_default', openImagePopup);
+  return card.createCardElement();
+}
 
 function findValidator(form) {
   for (const idx in validators) {
@@ -117,8 +120,7 @@ function addCard(evt) {
   const name = placeNameInput.value;
   const link = placePhotoInput.value;
   
-  const card = new Card({name: name, link: link}, '.element-template_type_default', openImagePopup);
-  const newElement = card.createCardElement();
+  const newElement = createCardElement({name: name, link: link});
 
   elementList.prepend(newElement);
   closePopup(cardPopup);
