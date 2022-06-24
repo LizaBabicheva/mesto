@@ -65,8 +65,9 @@ const popupPlaceName = document.querySelector('.popup__photo-caption');
 const placeNameInput = containerAdd.querySelector('.popup__input_type_placename');
 const placePhotoInput = containerAdd.querySelector('.popup__input_type_placephoto');
 
-//const elementTemplate = document.querySelector('.element-template').content;
 const elementList = document.querySelector('.elements');
+
+const validators = [];
 
 initialCards.forEach(item => {
   const card = new Card(item, '.element-template_type_default', openImagePopup);
@@ -75,41 +76,19 @@ initialCards.forEach(item => {
 });
 
 document.querySelectorAll('.popup__form').forEach(formElement => {
-  new FormValidator(validationOptions, formElement).enableValidation();
+  const validator = new FormValidator(validationOptions, formElement);
+  validators.push(validator);
+  validator.enableValidation();
 });
 
-
-// function createCardElement(name, link) {
-//   const newElement = elementTemplate.querySelector('.element').cloneNode(true);
-//   const elementPhoto = newElement.querySelector('.element__photo');
-//   newElement.querySelector('.element__name').textContent = name;
-//   elementPhoto.src = link;
-//   elementPhoto.setAttribute('alt', name);
-
-//   const likeButton = newElement.querySelector('.element__like');
-//   likeButton.addEventListener('click', () => toggleLike(likeButton));
-
-//   elementPhoto.addEventListener('click', () => openImagePopup(name, link));
-
-//   const elementDeleteButton = newElement.querySelector('.element__delete');
-//   elementDeleteButton.addEventListener('click', deleteCard);
-
-//   return newElement;
-// }
-
-// initialCards.forEach(card => {
-//   const newElement = createCardElement(card.name, card.link);
-//   elementList.append(newElement);
-// });
-
-// function toggleLike(likeButton) {
-//   likeButton.classList.toggle('element__like_active');
-// };
-
-// function deleteCard(clickEvent) {
-//   const element = clickEvent.currentTarget.closest('.element');
-//   element.remove();
-// }
+function findValidator(form) {
+  for (const idx in validators) {
+    const validator = validators[idx];
+    if (validators[idx].isSameForm(form)) {
+      return validator;
+    }
+  }
+}
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -120,7 +99,8 @@ function openProfilePopup() {
   nameInput.value = nameLabel.textContent;
   jobInput.value = jobLabel.textContent;
   openPopup(profilePopup);
-  //toggleFormButton(formEdit, validationOptions);
+  
+  findValidator(formEdit).toggleFormButton();
 }
 
 function handleProfileEdit(evt) {
@@ -137,9 +117,9 @@ function addCard(evt) {
   const name = placeNameInput.value;
   const link = placePhotoInput.value;
   
-  //Нужно исправить
-  // const newElement = createCardElement(name, link);
-  //
+  const card = new Card({name: name, link: link}, '.element-template_type_default', openImagePopup);
+  const newElement = card.createCardElement();
+
   elementList.prepend(newElement);
   closePopup(cardPopup);
   formAdd.reset();
@@ -180,10 +160,11 @@ document.querySelectorAll('.popup').forEach(popup => {
 });
 
 profileEditButton.addEventListener('click', openProfilePopup);
+
 elementAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
-  //toggleFormButton(cardPopup, validationOptions);
+  findValidator(formAdd).toggleFormButton();
 });
+
 formAdd.addEventListener('submit', addCard);
 formEdit.addEventListener('submit', handleProfileEdit);
-
