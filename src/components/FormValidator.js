@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(data, formElement) {
     this._formLabelSelector = data.formLabelSelector;
     this._inputSelector = data.inputSelector;
@@ -76,5 +76,3 @@ class FormValidator {
     return this._formElement == form;
   }
 }
-
-export {FormValidator};
