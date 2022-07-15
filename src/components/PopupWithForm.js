@@ -1,5 +1,8 @@
 import { Popup } from './Popup';
-import { validationOptions } from '../utils/constants.js';
+import { validationOptions,
+         popupInputSelector,
+         formSelector
+        } from '../utils/constants.js';
 import { FormValidator } from './FormValidator.js'
 
 export class PopupWithForm extends Popup {
@@ -11,7 +14,7 @@ export class PopupWithForm extends Popup {
 
   _getInputValues() {
     const values = [];
-    this._popup.querySelectorAll('.popup__input').forEach((input) => {
+    this._popup.querySelectorAll(popupInputSelector).forEach((input) => {
       input.push(input.value);
     })
 
@@ -34,11 +37,11 @@ export class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
 
-    this._popup.querySelector('.popup__form').addEventListener('submit', this._submitCallback);
+    this._popup.querySelector(formSelector).addEventListener('submit', this._submitCallback);
    }
 
   close() {
     super.close();
-    this._popup.querySelector('.popup__form').reset();
+    this._popup.querySelector(formSelector).reset();
   }
 }

@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
     {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -25,9 +25,11 @@ const initialCards = [
     }
   ];
   
-  const validationOptions = {
+  export const popupInputSelector = '.popup__input';
+
+  export const validationOptions = {
     formLabelSelector: '.popup__input-label',
-    inputSelector: '.popup__input',
+    inputSelector: popupInputSelector,
     inputErrorSelector:'.popup__error',
     submitButtonSelector: '.popup__save-button',
     inputErrorClass: 'popup__input_type_error',
@@ -35,57 +37,36 @@ const initialCards = [
     inactiveButtonClass: 'popup__save-button_disabled',
   };
   
-  const profilePopup = document.querySelector('.popup_type_edit');
-  const cardPopup = document.querySelector('.popup_type_add');
-  const imagePopup = document.querySelector('.popup_type_photo');
+  export const profilePopupSelector = '.popup_type_edit';
+  export const cardPopupSelector = '.popup_type_add';
+  export const imagePopupSelector = '.popup_type_photo';
   
-  const containerEdit = document.querySelector('.popup__container_type_edit');
   const containerAdd = document.querySelector('.popup__container_type_add');
   
-  const formEdit = containerEdit.querySelector('.popup__form');
-  const formAdd = containerAdd.querySelector('.popup__form');
+  export const formSelector = '.popup__form';
   
-  const nameInput = containerEdit.querySelector('.popup__input_type_profilename');
-  const jobInput = containerEdit.querySelector('.popup__input_type_profileabout');
-  const nameLabel = document.querySelector('.profile__name');
-  const jobLabel = document.querySelector('.profile__about');
+  export const profileNameInputSelector = '.popup__input_type_profilename';
+  export const profileAboutInputSelector = '.popup__input_type_profileabout';
+  export const nameLabelSelector = '.profile__name';
+  export const jobLabelSelector = '.profile__about';
   
-  const profileEditButton = document.querySelector('.profile__edit-button');
-  const elementAddButton = document.querySelector('.profile__add-button');
+  export const profileEditButton = document.querySelector('.profile__edit-button');
+  export const elementAddButton = document.querySelector('.profile__add-button');
   
-//   const cardPopupSaveButton = cardPopup.querySelector('.popup__save-button');
+  export const popupCloseButtonSelector = '.popup__close-button';
   
-  const popupPlacePhoto = document.querySelector('.popup__photo-image');
-  const popupPlaceName = document.querySelector('.popup__photo-caption');
+  export const popupPlacePhotoSelector = '.popup__photo-image';
+  export const popupPlaceNameSelector = '.popup__photo-caption';
   
-  const placeNameInput = containerAdd.querySelector('.popup__input_type_placename');
-  const placePhotoInput = containerAdd.querySelector('.popup__input_type_placephoto');
+  export const placeNameInput = containerAdd.querySelector('.popup__input_type_placename');
+  export const placePhotoInput = containerAdd.querySelector('.popup__input_type_placephoto');
   
-  const elementList = document.querySelector('.elements');
+  export const elementSelector = '.element';
+  export const elementNameSelector = '.element__name';
+  export const elementPhotoSelector = '.element__photo';
+  export const elementLikeSelector = '.element__like';
+  export const elementDeleteSelector = '.element__delete';
+  export const elementListSelector = '.elements';
+  export const elementList = document.querySelector('.elements');
   
-  const validators = [];
-
-export { 
-    initialCards,
-    validationOptions,
-    profilePopup,
-    cardPopup,
-    imagePopup,
-    // containerEdit,
-    // containerAdd,
-    formEdit,
-    formAdd,
-    nameInput,
-    jobInput,
-    nameLabel,
-    jobLabel,
-    profileEditButton,
-    elementAddButton,
-    // cardPopupSaveButton,
-    popupPlacePhoto,
-    popupPlaceName,
-    placeNameInput,
-    placePhotoInput,
-    elementList,
-    validators
- }
+  export const elementDefaultTemplate = '.element-template_type_default';

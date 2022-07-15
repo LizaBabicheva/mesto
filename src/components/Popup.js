@@ -1,3 +1,5 @@
+import { popupCloseButtonSelector } from '../utils/constants.js';
+
 export class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
@@ -20,7 +22,7 @@ export class Popup {
   }
 
   setEventListeners() {
-    this._popup.querySelector('.popup__close-button').addEventListener('click', () => {
+    this._popup.querySelector(popupCloseButtonSelector).addEventListener('click', () => {
       this.close();
     });
  
