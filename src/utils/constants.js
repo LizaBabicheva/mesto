@@ -55,8 +55,8 @@ export const initialCards = [
   
   //export const popupCloseButtonSelector = '.popup__close-button';
   
-  export const popupPlacePhotoSelector = '.popup__photo-image';
-  export const popupPlaceNameSelector = '.popup__photo-caption';
+  // export const popupPlacePhotoSelector = '.popup__photo-image';
+  // export const popupPlaceNameSelector = '.popup__photo-caption';
   
   export const placeNameInput = containerAdd.querySelector('.popup__input_type_placename');
   export const placePhotoInput = containerAdd.querySelector('.popup__input_type_placephoto');
