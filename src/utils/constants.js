@@ -53,7 +53,7 @@ export const initialCards = [
   export const profileEditButton = document.querySelector('.profile__edit-button');
   export const elementAddButton = document.querySelector('.profile__add-button');
   
-  export const popupCloseButtonSelector = '.popup__close-button';
+  //export const popupCloseButtonSelector = '.popup__close-button';
   
   export const popupPlacePhotoSelector = '.popup__photo-image';
   export const popupPlaceNameSelector = '.popup__photo-caption';
