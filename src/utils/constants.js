@@ -25,11 +25,11 @@ export const initialCards = [
     }
   ];
   
-  export const popupInputSelector = '.popup__input';
+  //export const popupInputSelector = '.popup__input';
 
   export const validationOptions = {
     formLabelSelector: '.popup__input-label',
-    inputSelector: popupInputSelector,
+    inputSelector: '.popup__input',
     inputErrorSelector:'.popup__error',
     submitButtonSelector: '.popup__save-button',
     inputErrorClass: 'popup__input_type_error',
@@ -37,13 +37,16 @@ export const initialCards = [
     inactiveButtonClass: 'popup__save-button_disabled',
   };
   
+  export const profileEditPopup = document.querySelector('.popup_type_edit');
+  export const cardAddPopup = document.querySelector('.popup_type_add');
+
   export const profilePopupSelector = '.popup_type_edit';
   export const cardPopupSelector = '.popup_type_add';
   export const imagePopupSelector = '.popup_type_photo';
   
   const containerAdd = document.querySelector('.popup__container_type_add');
   
-  export const formSelector = '.popup__form';
+  //export const formSelector = '.popup__form';
   
   export const profileNameInputSelector = '.popup__input_type_profilename';
   export const profileAboutInputSelector = '.popup__input_type_profileabout';

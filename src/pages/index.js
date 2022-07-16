@@ -3,6 +3,7 @@ import './index.css';
 import {Card} from '../components/Card.js';
 import { 
   initialCards,
+  validationOptions,
   profilePopupSelector,
   cardPopupSelector,
   imagePopupSelector,
@@ -21,12 +22,15 @@ import {
   elementPhotoSelector,
   elementDeleteSelector,
   elementSelector,
-  elementNameSelector
+  elementNameSelector,
+  profileEditPopup,
+  cardAddPopup
 } from '../utils/constants.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
+import { FormValidator } from '../components/FormValidator.js';
 
 const cardList = new Section({
   items: initialCards,
@@ -40,12 +44,16 @@ const cardList = new Section({
 
 const imagePopup = new PopupWithImage(imagePopupSelector);
 
+const addCardPopupValidator = new FormValidator(validationOptions, cardAddPopup);
+
 const addCardPopup = new PopupWithForm(
-  cardPopupSelector, addCard
+  cardPopupSelector, addCard, addCardPopupValidator
 )
 
+const editProfilePopupValidator = new FormValidator(validationOptions, profileEditPopup);
+
 const editProfilePopup = new PopupWithForm(
-  profilePopupSelector, handleProfileEdit
+  profilePopupSelector, handleProfileEdit, editProfilePopupValidator
 )
 
 const userInfo = new UserInfo(nameLabelSelector, jobLabelSelector);
