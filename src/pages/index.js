@@ -16,7 +16,12 @@ import {
   placePhotoInput,
   elementList,
   elementListSelector,
-  elementDefaultTemplate
+  elementDefaultTemplate,
+  elementLikeSelector,
+  elementPhotoSelector,
+  elementDeleteSelector,
+  elementSelector,
+  elementNameSelector
 } from '../utils/constants.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -55,12 +60,23 @@ addCardPopup.enableValidation();
 editProfilePopup.setEventListeners();
 editProfilePopup.enableValidation();
 
+
+
 function createCardElement(cardData) {
-  const card = new Card(cardData, elementDefaultTemplate, (name, link) => {
-    imagePopup.open({
-      name: name, link: link
+  const card = new Card(cardData, 
+    {
+    elementSelector: elementSelector,
+    elementNameSelector: elementNameSelector,
+    cardSelector: elementDefaultTemplate,
+    elementLikeSelector: elementLikeSelector,
+    elementPhotoSelector: elementPhotoSelector,
+    elementDeleteSelector: elementDeleteSelector
+    }, 
+    (name, link) => {
+      imagePopup.open({
+        name: name, link: link
+      });
     });
-  });
   return card.createCardElement();
 }
 
