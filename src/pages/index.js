@@ -4,27 +4,22 @@ import {Card} from '../components/Card.js';
 import { 
   initialCards,
   validationOptions,
+  profileEditPopup,
+  cardAddPopup,
   profilePopupSelector,
   cardPopupSelector,
   imagePopupSelector,
-  profileNameInputSelector,
-  profileAboutInputSelector,
   nameLabelSelector,
   jobLabelSelector,
   profileEditButton,
   elementAddButton,
-  placeNameInput,
-  placePhotoInput,
-  elementList,
-  elementListSelector,
-  elementDefaultTemplate,
-  elementLikeSelector,
-  elementPhotoSelector,
-  elementDeleteSelector,
   elementSelector,
   elementNameSelector,
-  profileEditPopup,
-  cardAddPopup
+  elementPhotoSelector,
+  elementLikeSelector,
+  elementDeleteSelector,
+  elementListSelector,
+  elementDefaultTemplate
 } from '../utils/constants.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -88,36 +83,38 @@ function createCardElement(cardData) {
   return card.createCardElement();
 }
 
-function handleProfileEdit(evt) {
+function handleProfileEdit(evt, data) {
   evt.preventDefault();
 
-  const formData = new FormData(evt.target);
   userInfo.setUserInfo(
     {
-      name: formData.get('profile-name'),
-      about: formData.get('profile-about')
+      name: data['profile-name'],
+      about: data['profile-about']
     }
   )
 
   editProfilePopup.close();
 }
 
-function addCard(evt) {
+function addCard(evt, data) {
   evt.preventDefault();
   
-  const name = placeNameInput.value;
-  const link = placePhotoInput.value;
-  
-  const newElement = createCardElement({name: name, link: link});
+  const newElement = createCardElement({
+    name: data['element-name'],
+    link: data['element-image']
+  });
 
-  elementList.prepend(newElement);
+  cardList.prependItem(newElement);
   addCardPopup.close();
 }
 
 profileEditButton.addEventListener('click', () => {
   const info = userInfo.getUserInfo();
-  editProfilePopup.setInputValue(profileNameInputSelector, info.name);
-  editProfilePopup.setInputValue(profileAboutInputSelector, info.about);
+
+  editProfilePopup.setInputValues({
+    'profile-name': info.name,
+    'profile-about': info.about
+  });
 
   editProfilePopup.open();
 })

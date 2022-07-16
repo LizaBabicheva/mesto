@@ -6,19 +6,17 @@ export class PopupWithForm extends Popup {
     this._form = this._popup.querySelector('.popup__form');
     this._submitCallback = submitCallback;
     this._validator = validator;
+    this._inputList = this._popup.querySelectorAll('.popup__input');
   }
 
-  _getInputValues() {
-    const values = [];
-    
-    this._inputList = this._popup.querySelectorAll('.popup__input');
+  _getInputValues() {    
+    this._formValues = {};
 
-    //this._popup.querySelectorAll(popupInputSelector).forEach((input) => {
     this._inputList.forEach((input) => {
-      input.push(input.value);
+      this._formValues[input.name] = input.value;
     })
 
-    return values;
+    return this._formValues;
   }
 
   open() {
@@ -26,8 +24,10 @@ export class PopupWithForm extends Popup {
     this._validator.toggleFormButton();
   }
 
-  setInputValue(inputSelector, value) {
-    this._popup.querySelector(inputSelector).value = value;
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
   }
 
   enableValidation() {
@@ -37,7 +37,7 @@ export class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
 
-    this._form.addEventListener('submit', this._submitCallback);
+    this._form.addEventListener('submit', (evt) => this._submitCallback(evt, this._getInputValues()));
    }
 
   close() {
