@@ -8,6 +8,9 @@
   height: 19px;
   opacity: 1;
   transition: opacity 1s ease;
+  grid-column: 2/3;
+  grid-row: 1/2;
+  justify-self: center;
 }
 
 .element__like:hover {
